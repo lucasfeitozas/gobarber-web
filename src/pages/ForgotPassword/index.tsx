@@ -44,7 +44,6 @@ const ForgotPassword: React.FC = () => {
         await api.post('/password/forgot', {
           email: data.email,
         });
-        // TODO fazer envio de senha p email
 
         // history.push('/dashboard');
         addToast({
@@ -57,7 +56,6 @@ const ForgotPassword: React.FC = () => {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErros(err);
           formRef.current?.setErrors(errors);
-
           return;
         }
 
