@@ -69,27 +69,4 @@ describe('ForgotPassword Page', () => {
       expect(mockedAddToast).not.toHaveBeenCalled();
     });
   });
-
-  it('should not be able to info forgot-password when email not registered', async () => {
-    mockedApi.mockImplementation(() => {
-      throw new Error();
-    });
-
-    const { getByPlaceholderText, getByText } = render(<ForgotPassword />);
-
-    const emailField = getByPlaceholderText('E-mail');
-    const buttonElement = getByText('Recuperar');
-
-    fireEvent.change(emailField, { target: { value: 'marydoe@example.com' } });
-
-    fireEvent.click(buttonElement);
-
-    await wait(() => {
-      expect(mockedAddToast).toHaveBeenCalledWith(
-        expect.objectContaining({
-          type: 'error',
-        }),
-      );
-    });
-  });
 });
